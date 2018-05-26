@@ -61,4 +61,4 @@ Add additional notes about how to deploy this on a live system
 
 ## Acknowledgments
 
-* Big thanks to Mike Daye for going above and beyond helping us get the code to work.
+* 
