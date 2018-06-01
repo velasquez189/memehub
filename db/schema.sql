@@ -15,4 +15,4 @@ CREATE TABLE images (
 
 
 
-SELECT * FROM meme_pieDB;
+SELECT * FROM images;
