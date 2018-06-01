@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/velasquez189/memehub#readme",
   "dependencies": {
+    "aws-sdk": "^2.249.1",
     "body-parser": "^1.18.3",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
