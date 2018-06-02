@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/views/test.html"));
+    res.sendFile(path.join(__dirname, "../public/views/S3test.html"));
   });
 
   app.get("/cognito", function(req,res) {
