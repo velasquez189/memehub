@@ -178,13 +178,34 @@ var s3 = new AWS.S3({
     });
   }
 
-  function deletePhoto(albumName, photoKey) {
-    s3.deleteObject({Key: photoKey}, function(err, data) {
+  // function deletePhoto(albumName, photoKey) {
+  //   s3.deleteObject({Key: photoKey}, function(err, data) {
+  //     if (err) {
+  //       return alert('There was an error deleting your photo: ', err.message);
+  //     }
+  //     alert('Successfully deleted photo.');
+  //     viewAlbum(albumName);
+  //   });
+  // }
+
+  function deleteAlbum(albumName) {
+    var albumKey = encodeURIComponent(albumName) + '/';
+    s3.listObjects({Prefix: albumKey}, function(err, data) {
       if (err) {
-        return alert('There was an error deleting your photo: ', err.message);
+        return alert('There was an error deleting your album: ', err.message);
       }
-      alert('Successfully deleted photo.');
-      viewAlbum(albumName);
+      var objects = data.Contents.map(function(object) {
+        return {Key: object.Key};
+      });
+      s3.deleteObjects({
+        Delete: {Objects: objects, Quiet: true}
+      }, function(err, data) {
+        if (err) {
+          return alert('There was an error deleting your album: ', err.message);
+        }
+        alert('Successfully deleted album.');
+        listAlbums();
+      });
     });
   }
 
