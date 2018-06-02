@@ -3,29 +3,6 @@ var bucketRegion = 'us-east-2';
 var IdentityPoolId = 'us-east-2:25744f84-733f-46bb-bc15-7c143d3c89e6';
 
 
-// <?xml version="1.0" encoding="UTF-8"?>
-{/* <CORSConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-    <CORSRule>
-        <AllowedOrigin>*</AllowedOrigin>
-        <AllowedMethod>POST</AllowedMethod>
-        <AllowedMethod>GET</AllowedMethod>
-        <AllowedMethod>PUT</AllowedMethod>
-        <AllowedMethod>DELETE</AllowedMethod>
-        <AllowedMethod>HEAD</AllowedMethod>
-        <AllowedHeader>*</AllowedHeader>
-    </CORSRule>
-</CORSConfiguration> */}
-
-// <!-- Sample policy -->
-// <CORSConfiguration>
-// 	<CORSRule>
-// 		<AllowedOrigin>*</AllowedOrigin>
-// 		<AllowedMethod>GET</AllowedMethod>
-// 		<MaxAgeSeconds>3000</MaxAgeSeconds>
-// 		<AllowedHeader>Authorization</AllowedHeader>
-// 	</CORSRule>
-// </CORSConfiguration>
-
 
 AWS.config.update({
   region: 'us-east-2',
