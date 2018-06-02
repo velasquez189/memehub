@@ -1,5 +1,6 @@
 const mysql = require(`mysql`)
 require(`dotenv`).load();
+let connection;
 
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection(process.env.JAWSDB_URL);
@@ -17,7 +18,7 @@ connection.connect(err => {
         console.error(`Congratulations, you've played yourself: ${err.stack}`);
         return;
     }
-    console.log(`You've connected succesfully: ${connection.threadId}`)
+    console.log(`You've connected successfully: ${connection.threadId}`)
 });
 
 module.exports = connection;
