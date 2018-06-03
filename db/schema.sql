@@ -1,4 +1,4 @@
-DROP DATABASE IF EXISTS meme_pieDB;
+/*DROP DATABASE IF EXISTS meme_pieDB;*/
 
 CREATE DATABASE meme_pieDB;
 
@@ -15,8 +15,7 @@ CREATE TABLE tagged (
     tag_id VARCHAR(50) not null
 );
 
-SELECT *
-FROM memes;
+SELECT * FROM memes;
 
 
 SELECT memes.meme_id, memes.file_path, tagged.tag_id
