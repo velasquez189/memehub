@@ -2,7 +2,7 @@ const connection = require("../config/connection.js");
 
 const printQuestionMarks = num => {
     let arr = [];
-    for (let i = 0; i <num; i++) {
+    for (let i = 0; i < num; i++) {
         arr.push("?")
     };
     return arr.toString();
@@ -31,16 +31,17 @@ const orm = {
                 throw err;
             }
             cb(res);
-        })
+        });
     },
     findTagged: (tableInput, cb) => {
         let queryString = "SELECT " + memes.meme_id + ", " + memes.file_path + ", " + tagged.tag_id;
-        queryString += "FROM " +  memes; 
+        queryString += "FROM " + memes;
         queryString += "INNER JOIN " + tagged;
-        queryString += "ON " + memes.meme_id
-        queryString += "= " tagged.meme_id
-        queryString += "WHERE " + tag_id
-        queryString += "= " + ('?')
+        queryString += "ON " + memes.meme_id;
+        queryString += "= "
+        tagged.meme_id;
+        queryString += "WHERE " + tag_id;
+        queryString += "= " + ('?');
 
         console.log(queryString);
 
@@ -48,8 +49,15 @@ const orm = {
             if (err) {
                 throw err;
             }
-            cb (res);
-        })
+            cb(res);
+            // findTagged() => {
+            //     const query = connection.query("SELECT * FROM memes WHERE meme_id=?", [""], (err, res) =>{
+            //         for (var i=0; i < res.length; i++) {
+            //             console.log(res[i].memes.meme_id + " | " + res[i].tagged.meme_id);
+            //         }
+            //     });
+            // };
+        });
     },
     insertOne: (table, cols, vals, cb) => {
         let queryString = "INSERT INTO " + table;
@@ -66,23 +74,10 @@ const orm = {
             if (err) {
                 throw err;
             }
-            cb (res);
+            cb(res);
         });
     }
 };
 
 //  Export the orm object for the model
 module.exports = orm;
-
-
-
-
-
-
-
-
-
-
-
-
-

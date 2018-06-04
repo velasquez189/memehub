@@ -7,7 +7,7 @@ const memes = {
         });
     },
     create: (cols, vals, cb) => {
-        orm.insertOne('memes', cols, vals, res => {
+        orm.insertOne(table, cols, vals, res => {
             cb(res);
         });
     },
