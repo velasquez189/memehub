@@ -42,9 +42,9 @@ var s3 = new AWS.S3({
           return getHtml([
             '<li>',
             '<span onclick="deleteAlbum(\'' + albumName + '\')">X</span>',
-            '<span onclick="viewAlbum(\'' + albumName + '\')">',
+            '<button onclick="viewAlbum(\'' + albumName + '\')">',
             albumName,
-            '</span>',
+            '</button>',
             '</li>'
           ]);
         });
@@ -117,7 +117,7 @@ var s3 = new AWS.S3({
         return getHtml([
           '<span>',
           '<div>',
-          '<img style="width:128px;height:128px;" src="' + photoUrl + '"/>',
+          '<img style="height:128px;" src="' + photoUrl + '"/>',
           '</div>',
           '<div>',
           '<span onclick="deletePhoto(\'' + albumName + "','" + photoKey + '\')">',
@@ -150,6 +150,7 @@ var s3 = new AWS.S3({
         '</button>',
       ]
       document.getElementById('app').innerHTML = getHtml(htmlTemplate);
+      console.log('you made it here ass-wipe');
     });
   }
 
@@ -174,9 +175,13 @@ var s3 = new AWS.S3({
         return alert('There was an error uploading your photo: ', err.message);
       }
       alert('Successfully uploaded photo.');
+      console.log(file);
+      
       viewAlbum(albumName);
+      $("#addphoto").on("click", addPhoto(albumName));
     });
   }
+
 
   // function deletePhoto(albumName, photoKey) {
   //   s3.deleteObject({Key: photoKey}, function(err, data) {
@@ -188,25 +193,25 @@ var s3 = new AWS.S3({
   //   });
   // }
 
-  function deleteAlbum(albumName) {
-    var albumKey = encodeURIComponent(albumName) + '/';
-    s3.listObjects({Prefix: albumKey}, function(err, data) {
-      if (err) {
-        return alert('There was an error deleting your album: ', err.message);
-      }
-      var objects = data.Contents.map(function(object) {
-        return {Key: object.Key};
-      });
-      s3.deleteObjects({
-        Delete: {Objects: objects, Quiet: true}
-      }, function(err, data) {
-        if (err) {
-          return alert('There was an error deleting your album: ', err.message);
-        }
-        alert('Successfully deleted album.');
-        listAlbums();
-      });
-    });
-  }
+  // function deleteAlbum(albumName) {
+  //   var albumKey = encodeURIComponent(albumName) + '/';
+  //   s3.listObjects({Prefix: albumKey}, function(err, data) {
+  //     if (err) {
+  //       return alert('There was an error deleting your album: ', err.message);
+  //     }
+  //     var objects = data.Contents.map(function(object) {
+  //       return {Key: object.Key};
+  //     });
+  //     s3.deleteObjects({
+  //       Delete: {Objects: objects, Quiet: true}
+  //     }, function(err, data) {
+  //       if (err) {
+  //         return alert('There was an error deleting your album: ', err.message);
+  //       }
+  //       alert('Successfully deleted album.');
+  //       listAlbums();
+  //     });
+  //   });
+  // }
 
 // })
