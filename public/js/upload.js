@@ -63,7 +63,10 @@ function addPhoto(memes) {
   var files = document.getElementById('photoupload').files;
   if (!files.length) {
     return alert('Please choose a file to upload first.');
-  }
+  };
+  if ($("#colFormLabelSm").val() === ""){
+    return alert('Please add a tag for your meme.')
+  };
   var file = files[0];
   var fileName = file.name;
   var albumPhotosKey = encodeURIComponent(memes) + '//';
@@ -71,6 +74,16 @@ function addPhoto(memes) {
   var photoKey = albumPhotosKey + fileName;
 
   console.log(newMeme);
+
+//   $.ajax("/api/burgers", {
+//     type: "POST",
+//     data: newMeme
+// }).then(
+//     function(){
+//         console.log(`new meme added to database`);
+//         // location.reload();
+//     }
+// );
 
   s3.upload({
     Key: photoKey,
