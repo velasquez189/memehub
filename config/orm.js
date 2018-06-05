@@ -63,10 +63,10 @@ var orm = {
     },
     insertOne: function (table, cols, vals, cb) {
         var queryString =
-        `INSERT INTO memes (file_path) VALUES (?)`;
+        `INSERT INTO ?? (file_path) VALUES (?)`;
         console.log(queryString);
         var queryString2 =
-        'INSER INTO tagged (file_path) VALUES (?)'
+        'INSER INTO ?? (file_path) VALUES (?)'
         connection.query(queryString, vals, (err, res) => {
             if (err) {
                 throw err;

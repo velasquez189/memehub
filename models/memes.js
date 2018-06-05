@@ -1,6 +1,6 @@
 const orm = require('../config/orm');
 
-const memes = {
+const Memes = {
     all: cb => {
         orm.selectAll('memes', res => {
             cb(res);
@@ -18,4 +18,4 @@ const memes = {
     }
 }
 
-module.exports = memes;
+module.exports = Memes;
