@@ -34,7 +34,7 @@ function viewAlbum(albumName) {
     var bucketUrl = href + albumBucketName + '/';
     var htmlTemplate = [
       '<input id="photoupload" type="file" accept="image/*">',
-      '<form>',
+      '<form id="tag-form">',
       '<br>',
       '<div class="form-group row">',
       '<label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Add Tags:</label>',

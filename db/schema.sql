@@ -4,19 +4,19 @@ CREATE DATABASE meme_pieDB;
 USE meme_pieDB;
 
 CREATE TABLE memes (
-    meme_id INT(15) AUTO_INCREMENT not null PRIMARY KEY,
     file_path VARCHAR(75) not null default '',
-    date_created TIMESTAMP
+    date_created TIMESTAMP(6)
 );
 
 CREATE TABLE tagged (
-    meme_id INT(15) not null,
+    file_path VARCHAR(75) not null default '',
     tag_id VARCHAR(50) not null
 );
 
 SELECT * FROM memes;
 
 
-SELECT memes.meme_id, memes.file_path, tagged.tag_id
+SELECT  memes.file_path, tagged.tag_id
 FROM memes
-INNER JOIN tagged ON memes.meme_id=tagged.meme_id;
+INNER JOIN tagged ON memes.file_path=tagged.file_path
+WHERE tag_id = "?"
