@@ -1,20 +1,20 @@
 const express = require("express");
-const router = express.Router();
-const memes = require("../models");
 const path = require("path");
+const Memes = require("../models/memes.js");
+const router = express.Router();
 
 
-router.get('/', (req, res) => {
+router.get('../public/views/index.html', (req, res) => {
     res.sendFile(path.join(__dirname, "index.html"));
 });
 
-router.get('/upload', (req, res) =>{
+router.get('../public/views/upload.html', (req, res) =>{
     res.sendFile(path.join(__dirname, "upload.html"));
 })
 
 
 router.post("/api/memes", (req, res) => {
-    Memes.insertOne([
+    Memes.create([
         "memes", "file_path",
     ], [
         req.body.name
@@ -23,7 +23,7 @@ router.post("/api/memes", (req, res) => {
             meme_id: result.insertId
         })
     });
-    Memes.insertOne([
+    Memes.create([
         "tagged", "tag_id",
     ], [
         req.body.tags_id

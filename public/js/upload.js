@@ -1,7 +1,7 @@
 var albumBucketName = 'memepieimages';
 var bucketRegion = 'us-east-2';
 var IdentityPoolId = 'us-east-2:25744f84-733f-46bb-bc15-7c143d3c89e6';
-
+var newMeme;
 
 
 AWS.config.update({
@@ -38,9 +38,9 @@ function viewAlbum(albumName) {
       '<br>',
       '<div class="form-group row">',
       '<label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Add Tags:</label>',
-        '<div class="col-xs-4">',
-          '<input type="string" class="form-control form-control-sm" id="colFormLabelSm" placeholder="seperate with commas">',
-        '</div>',
+      '<div class="col-xs-4">',
+      '<input type="string" class="form-control form-control-sm" id="colFormLabelSm" placeholder="seperate with commas">',
+      '</div>',
       '</div>',
       '</form>',
       '<button id="addphoto" onclick="addPhoto(\'' + albumName + '\')">',
@@ -56,15 +56,11 @@ function viewAlbum(albumName) {
 
 function addPhoto(memes) {
   // var tags = $("#colFormLabelSm").val().split(',')
-  var newMeme = {
-    tags_id: $("#colFormLabelSm").val().replace(/\s*,\s*/g, ",").split(','),
-    file_path: "https://s3.us-east-2.amazonaws.com/memepieimages/memes%2F%2F" +fileName
-  };
   var files = document.getElementById('photoupload').files;
   if (!files.length) {
     return alert('Please choose a file to upload first.');
   };
-  if ($("#colFormLabelSm").val() === ""){
+  if ($("#colFormLabelSm").val() === "") {
     return alert('Please add a tag for your meme.')
   };
   var file = files[0];
@@ -72,22 +68,30 @@ function addPhoto(memes) {
   var albumPhotosKey = encodeURIComponent(memes) + '//';
 
   var photoKey = albumPhotosKey + fileName;
-
-  console.log(newMeme);
-
-  $("colFormLabelSm").on('submit', event =>{
-
+  console.log('STFU');
   
-  $.ajax("/api/memes", {
-    type: "POST",
-    data: newMeme
-}).then( data =>
-    function(){
+  // $("#tag-form").on('submit', event => {
+    event.preventDefault();
+    console.log('i seent it');
+
+    var newMeme = {
+      tags_id: $("#colFormLabelSm").val().replace(/\s*,\s*/g, ",").split(','),
+      file_path: "https://s3.us-east-2.amazonaws.com/memepieimages/memes%2F%2F" + fileName
+    };
+    console.log(newMeme);
+
+
+
+    $.ajax("/api/memes", {
+      type: "POST",
+      data: newMeme
+    }).then(data =>
+      function () {
         console.log(`new meme added to database`);
         // location.reload();
-    }
-);
-});
+      }
+    );
+  // });
 
   s3.upload({
     Key: photoKey,
@@ -98,7 +102,7 @@ function addPhoto(memes) {
       return alert('There was an error uploading your photo: ', err.message);
     }
     // alert('Successfully uploaded photo.');
-    console.log(file);
+    // console.log(file);
     viewAlbum('memes');
   });
 }

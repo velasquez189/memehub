@@ -1,4 +1,4 @@
-const model = require("../models");
+const model = require("../models/memes.js");
 
 module.exports = function (app) {
     app.get("/api/memes", function(req, res){

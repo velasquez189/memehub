@@ -1,4 +1,4 @@
-var model = require('../models');
+var model = require('../models/memes.js');
 
 module.exports = function (app){
 

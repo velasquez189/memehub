@@ -7,6 +7,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const orm = require("./config/orm.js");
+const routes = require("./controller/controller.js")
 
 // Sets up the Express App
 // =============================================================
@@ -32,11 +33,12 @@ app.use(bodyParser.json());
 // Static directory
 app.use(express.static("public"));
 
+app.use(routes);
 // Routes
 // =============================================================
 require("./routes/html-routes.js")(app);
-// require("./routes/author-api-routes.js")(app);
-// require("./routes/post-api-routes.js")(app);
+require("./routes/memes-api-routes.js")(app);
+require("./routes/tagged-api-routes.js")(app);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================
