@@ -65,6 +65,8 @@ var orm = {
         var queryString =
         `INSERT INTO ${table} (${cols.toString()}) VALUES (${printQuestionMarks(vals.length)})`;
         console.log(queryString);
+        console.log('anything');
+        
         // var queryString2 =
         // 'INSERT INTO ?? (file_path) VALUES (?)'
         connection.query(queryString, vals, (err, res) => {

@@ -14,24 +14,26 @@ router.get('../public/views/upload.html', (req, res) =>{
 
 
 router.post("/api/memes", (req, res) => {
+    console.log(req.body);
+    
     Memes.create([
-        "memes", "file_path",
+        "memes", "file_path"
     ], [
-        req.body.name
+        req.body.name, req.body.file_path
     ], result => {
         res.json({
             meme_id: result.insertId
         })
     });
-    Memes.create([
-        "tagged", "tag_id",
-    ], [
-        req.body.tags_id
-    ], result => {
-        res.json({
-            meme_id: result.insertId
-        })
-    });
+    // Memes.create([
+    //     "tagged", "tag_id",
+    // ], [
+    //     req.body.tags_id
+    // ], result => {
+    //     res.json({
+    //         meme_id: result.insertId
+    //     })
+    // });
 });
 
 module.exports = router;

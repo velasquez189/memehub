@@ -34,7 +34,7 @@ function viewAlbum(albumName) {
     var bucketUrl = href + albumBucketName + '/';
     var htmlTemplate = [
       '<input id="photoupload" type="file" accept="image/*">',
-      '<form id ="tag-form">',
+      '<form id="tag-form">',
       '<br>',
       '<div class="form-group row">',
       '<label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Add Tags:</label>',
@@ -42,10 +42,10 @@ function viewAlbum(albumName) {
       '<input type="string" class="form-control form-control-sm" id="colFormLabelSm" placeholder="seperate with commas">',
       '</div>',
       '</div>',
-      '</form>',
       '<button id="addphoto" onclick="addPhoto(\'' + albumName + '\')">',
       'Add Photo',
-      '</button>'
+      '</button>',
+      '</form>'
     ]
     document.getElementById('app').innerHTML = getHtml(htmlTemplate);
     console.log('you made it here ass-wipe');
@@ -70,7 +70,7 @@ function addPhoto(memes) {
   var photoKey = albumPhotosKey + fileName;
   console.log('STFU');
   
-  // $("#tag-form").on('submit', event => {
+  $("#tag-form").on('submit', event => {
     event.preventDefault();
     console.log('i seent it');
 
@@ -79,19 +79,17 @@ function addPhoto(memes) {
       file_path: "https://s3.us-east-2.amazonaws.com/memepieimages/memes%2F%2F" + fileName
     };
     console.log(newMeme);
-
-
-
+    console.log("your mom");
     $.ajax("/api/memes", {
       type: "POST",
       data: newMeme
     }).then(data =>
       function () {
         console.log(`new meme added to database`);
-        // location.reload();
+        location.reload();
       }
     );
-  // });
+  });
 
   s3.upload({
     Key: photoKey,
