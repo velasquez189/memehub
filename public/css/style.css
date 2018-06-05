@@ -5,4 +5,17 @@ body {
 
 .content {
     margin-left: 15px;
+    margin-top: 60px;
+}
+
+#colFormLabelSm {
+    margin-left: 15px;
+}
+
+.fixed-top {
+    border-bottom: 3px solid grey;
+}
+
+.fixed-bottom {
+    border-top: 3px solid gray;
 }
