@@ -120,12 +120,9 @@ var s3 = new AWS.S3({
           '<img style="height:128px;" src="' + photoUrl + '"/>',
           '</div>',
           '<div>',
-          '<span onclick="deletePhoto(\'' + albumName + "','" + photoKey + '\')">',
-          'X',
-          '</span>',
-          '<span>',
-          photoKey.replace(albumPhotosKey, ''),
-          '</span>',
+          // '<span>',
+          // photoKey.replace(albumPhotosKey, ''),
+          // '</span>',
           '</div>',
           '</span>',
         ]);
@@ -141,77 +138,8 @@ var s3 = new AWS.S3({
         '<div>',
         getHtml(photos),
         '</div>',
-        '<input id="photoupload" type="file" accept="image/*">',
-        '<button id="addphoto" onclick="addPhoto(\'' + albumName + '\')">',
-        'Add Photo',
-        '</button>',
-        '<button onclick="listAlbums()">',
-        'Back To Albums',
-        '</button>',
       ]
       document.getElementById('app').innerHTML = getHtml(htmlTemplate);
       console.log('you made it here ass-wipe');
     });
   }
-
-  //function for users to add photos to the S3 bucket
-
-  function addPhoto(albumName) {
-    var files = document.getElementById('photoupload').files;
-    if (!files.length) {
-      return alert('Please choose a file to upload first.');
-    }
-    var file = files[0];
-    var fileName = file.name;
-    var albumPhotosKey = encodeURIComponent(albumName) + '//';
-
-    var photoKey = albumPhotosKey + fileName;
-    s3.upload({
-      Key: photoKey,
-      Body: file,
-      ACL: 'public-read'
-    }, function (err, data) {
-      if (err) {
-        return alert('There was an error uploading your photo: ', err.message);
-      }
-      alert('Successfully uploaded photo.');
-      console.log(file);
-      
-      viewAlbum(albumName);
-      $("#addphoto").on("click", addPhoto(albumName));
-    });
-  }
-
-
-  // function deletePhoto(albumName, photoKey) {
-  //   s3.deleteObject({Key: photoKey}, function(err, data) {
-  //     if (err) {
-  //       return alert('There was an error deleting your photo: ', err.message);
-  //     }
-  //     alert('Successfully deleted photo.');
-  //     viewAlbum(albumName);
-  //   });
-  // }
-
-  // function deleteAlbum(albumName) {
-  //   var albumKey = encodeURIComponent(albumName) + '/';
-  //   s3.listObjects({Prefix: albumKey}, function(err, data) {
-  //     if (err) {
-  //       return alert('There was an error deleting your album: ', err.message);
-  //     }
-  //     var objects = data.Contents.map(function(object) {
-  //       return {Key: object.Key};
-  //     });
-  //     s3.deleteObjects({
-  //       Delete: {Objects: objects, Quiet: true}
-  //     }, function(err, data) {
-  //       if (err) {
-  //         return alert('There was an error deleting your album: ', err.message);
-  //       }
-  //       alert('Successfully deleted album.');
-  //       listAlbums();
-  //     });
-  //   });
-  // }
-
-// })
