@@ -6,22 +6,27 @@
 // =============================================================
 const express = require("express");
 const bodyParser = require("body-parser");
+const orm = require("./config/orm.js");
 
 // Sets up the Express App
 // =============================================================
 const app = express();
 var PORT = process.env.PORT || 8080;
 
-// Requiring our models for syncing
-// const db = require("./models");
+//  Select all available memes.
+orm.selectAll();
 
-// Sets up the Express app to handle data parsing
+//  Find a meme by its tag/username.
+orm.findTagged();
+
+//  Add your own meme.
+orm.insertOne();
+
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 // parse application/json
 app.use(bodyParser.json());
-
 // Static directory
 app.use(express.static("public"));
 
