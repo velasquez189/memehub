@@ -75,15 +75,19 @@ function addPhoto(memes) {
 
   console.log(newMeme);
 
-//   $.ajax("/api/burgers", {
-//     type: "POST",
-//     data: newMeme
-// }).then(
-//     function(){
-//         console.log(`new meme added to database`);
-//         // location.reload();
-//     }
-// );
+  $("colFormLabelSm").on('submit', event =>{
+
+  
+  $.ajax("/api/memes", {
+    type: "POST",
+    data: newMeme
+}).then( data =>
+    function(){
+        console.log(`new meme added to database`);
+        // location.reload();
+    }
+);
+});
 
   s3.upload({
     Key: photoKey,
