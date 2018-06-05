@@ -18,3 +18,12 @@ body {
 .fixed-bottom {
     border-top: 3px solid gray;
 }
+
+.navbar-brand {
+    font-family: 'Galada', cursive;
+}
+
+.upload {
+    font-family: 'Galada', cursive;
+}
+

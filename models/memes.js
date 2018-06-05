@@ -11,7 +11,11 @@ const memes = {
             cb(res);
         });
     },
-    findByTag: ()
+    findByTag: (tag_id, cb) => {
+        orm.findTagged(tag_id, res => {
+            cb(res);
+        })
+    }
 }
 
 module.exports = memes;

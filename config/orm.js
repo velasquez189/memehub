@@ -36,7 +36,7 @@ var orm = {
         });
         console.log(queryString);
     },
-    findTagged: (tableInput, cb) => {
+    findTagged: (tag_id, cb) => {
         let queryString = "SELECT memes.file_path, tagged.tag_id";
         queryString += " FROM memes";
         queryString += " INNER JOIN tagged";

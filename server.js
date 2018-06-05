@@ -20,7 +20,9 @@ var PORT = process.env.PORT || 8080;
 // orm.findTagged();
 
 // //  Add your own meme.
-// orm.insertOne();
+// orm.insertOne('memes', 'file_path', 'memes/turtles.jpeg', function(req, res) {
+//   res.JSON();
+// });
 
 
 // parse application/x-www-form-urlencoded
