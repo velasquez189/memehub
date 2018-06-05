@@ -33,3 +33,5 @@ router.post("/api/memes", (req, res) => {
         })
     });
 });
+
+module.exports = router;
