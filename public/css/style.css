@@ -4,8 +4,7 @@ body {
 }
 
 .content {
-    margin-left: 15px;
-    margin-top: 60px;
+    margin-top: 70px;
 }
 
 #colFormLabelSm {
@@ -19,3 +18,12 @@ body {
 .fixed-bottom {
     border-top: 3px solid gray;
 }
+
+.navbar-brand {
+    font-family: 'Galada', cursive;
+}
+
+.upload {
+    font-family: 'Galada', cursive;
+}
+

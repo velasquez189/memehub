@@ -14,11 +14,11 @@ module.exports = function(app) {
 
   // index route loads view.html
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/views/S3test.html"));
+    res.sendFile(path.join(__dirname, "../public/views/index.html"));
   });
 
-  app.get("/cognito", function(req,res) {
-    res.sendFile(path.join(__dirname, "../public/views/sign-in.html"))
+  app.get("/upload", function(req,res) {
+    res.sendFile(path.join(__dirname, "../public/views/upload.html"))
   })
 
 }
