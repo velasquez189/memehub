@@ -117,7 +117,7 @@ var s3 = new AWS.S3({
         return getHtml([
           '<span>',
           '<div>',
-          '<img style="height:128px;" src="' + photoUrl + '"/>',
+          '<img class="rounded" style="width: 300px; margin-bottom: 20px; border: 2px solid black;" src="' + photoUrl + '"/>',
           '</div>',
           '<div>',
           // '<span>',
@@ -128,12 +128,9 @@ var s3 = new AWS.S3({
         ]);
       });
       var message = photos.length ?
-        '<p>Click on the X to delete the photo</p>' :
+        '<p></p>' :
         '<p>You do not have any photos in this album. Please add photos.</p>';
       var htmlTemplate = [
-        '<h2>',
-        'Album: ' + albumName,
-        '</h2>',
         message,
         '<div>',
         getHtml(photos),

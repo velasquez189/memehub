@@ -13,14 +13,14 @@ const orm = require("./config/orm.js");
 const app = express();
 var PORT = process.env.PORT || 8080;
 
-//  Select all available memes.
-orm.selectAll();
+// //  Select all available memes.
+// orm.selectAll();
 
-//  Find a meme by its tag/username.
-orm.findTagged();
+// //  Find a meme by its tag/username.
+// orm.findTagged();
 
-//  Add your own meme.
-orm.insertOne();
+// //  Add your own meme.
+// orm.insertOne();
 
 
 // parse application/x-www-form-urlencoded

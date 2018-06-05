@@ -13,3 +13,5 @@ const memes = {
     },
     findByTag: ()
 }
+
+module.exports = memes;

@@ -1,5 +1,6 @@
 const connection = require("../config/connection.js");
 
+
 const printQuestionMarks = num => {
     let arr = [];
     for (let i = 0; i < num; i++) {
@@ -23,7 +24,8 @@ const objToSql = ob => {
         return arr.toString();
     }
 };
-const orm = {
+
+var orm = {
     selectAll: (tableInput, cb) => {
         let queryString = "SELECT * FROM " + tableInput + ";";
         connection.query(queryString, (err, res) => {
@@ -32,15 +34,15 @@ const orm = {
             }
             cb(res);
         });
+        console.log(queryString);
     },
     findTagged: (tableInput, cb) => {
-        let queryString = "SELECT " + memes.meme_id + ", " + memes.file_path + ", " + tagged.tag_id;
-        queryString += "FROM " + memes;
-        queryString += "INNER JOIN " + tagged;
-        queryString += "ON " + memes.meme_id;
-        queryString += "= "
-        tagged.meme_id;
-        queryString += "WHERE " + tag_id;
+        let queryString = "SELECT memes.file_path, tagged.tag_id";
+        queryString += " FROM memes";
+        queryString += " INNER JOIN tagged";
+        queryString += " ON memes.file_path";
+        queryString += " = tagged.file_path";
+        queryString += " WHERE tag_id";
         queryString += "= " + ('?');
 
         console.log(queryString);
@@ -59,17 +61,12 @@ const orm = {
             // };
         });
     },
-    insertOne: (table, cols, vals, cb) => {
-        let queryString = "INSERT INTO " + table;
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vales.length);
-        queryString += ") ";
-
+    insertOne: function (table, cols, vals, cb) {
+        var queryString =
+        `INSERT INTO memes (file_path) VALUES (?)`;
         console.log(queryString);
-
+        var queryString2 =
+        'INSER INTO tagged (file_path) VALUES (?)'
         connection.query(queryString, vals, (err, res) => {
             if (err) {
                 throw err;
