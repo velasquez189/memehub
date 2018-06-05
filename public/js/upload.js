@@ -34,7 +34,7 @@ function viewAlbum(albumName) {
     var bucketUrl = href + albumBucketName + '/';
     var htmlTemplate = [
       '<input id="photoupload" type="file" accept="image/*">',
-      '<form>',
+      '<form id ="tag-form">',
       '<br>',
       '<div class="form-group row">',
       '<label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm">Add Tags:</label>',
@@ -55,6 +55,11 @@ function viewAlbum(albumName) {
 //function for users to add photos to the S3 bucket
 
 function addPhoto(memes) {
+  // var tags = $("#colFormLabelSm").val().split(',')
+  var newMeme = {
+    tags_id: $("#colFormLabelSm").val().replace(/\s*,\s*/g, ",").split(','),
+    file_path: "https://s3.us-east-2.amazonaws.com/memepieimages/memes%2F%2F" +fileName
+  };
   var files = document.getElementById('photoupload').files;
   if (!files.length) {
     return alert('Please choose a file to upload first.');
@@ -64,6 +69,9 @@ function addPhoto(memes) {
   var albumPhotosKey = encodeURIComponent(memes) + '//';
 
   var photoKey = albumPhotosKey + fileName;
+
+  console.log(newMeme);
+
   s3.upload({
     Key: photoKey,
     Body: file,
